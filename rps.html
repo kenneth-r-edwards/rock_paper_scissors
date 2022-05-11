@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS</title>
+</head>
+
+<body>
+    <script>
+        function computerPlay() {
+            const opts = ['ROCK', 'PAPER', 'SCISSORS'];
+            let compNum = Math.floor(Math.random() * (2 - 0 + 1) + 0);
+            return opts[compNum];
+        }
+
+        function playerSelection() {
+            var playerChoice = window.prompt("Choose either rock, paper, or scissors: ");
+            return playerChoice.toUpperCase();
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            playerSelection = playerSelection.toUpperCase();
+            if (playerSelection == "ROCK") {
+                if (computerSelection == "ROCK") {
+                    alert("You both chose rock! Tie.");
+                    return [0, 0];
+                } else if (computerSelection == "PAPER") {
+                    alert("Paper covers rock! You lost!");
+                    return [0, 1];
+                } else if (computerSelection == "SCISSORS") {
+                    alert("Rock smashes scissors! You win!");
+                    return [1, 0];
+                }
+            } else if (playerSelection == "PAPER") {
+                if (computerSelection == "ROCK") {
+                    alert("Paper covers rock! You win!");
+                    return [1, 0];
+                } else if (computerSelection == "PAPER") {
+                    alert("You both chose paper! Tie.");
+                    return [0, 0];
+                } else if (computerSelection == "SCISSORS") {
+                    alert("Scissors cuts paper! You lost!");
+                    return [0, 1];
+                }
+            } else if (playerSelection == "SCISSORS") {
+                if (computerSelection == "ROCK") {
+                    alert("Rock smashes scissors! You lost!");
+                    return [0, 1];
+                } else if (computerSelection == "PAPER") {
+                    alert("Scissors cuts paper! You win!");
+                    return [1, 0];
+                } else if (computerSelection == "SCISSORS") {
+                    alert("You both chose scissors! Tie.");
+                    return [0, 1];
+                }
+            }
+        }
+
+        function game() {
+            let playerScore = 0;
+            let compScore = 0;
+
+
+            for (let i = 0; i < 5; i++) {
+                const playerChoice = playerSelection();
+                const computerSelection = computerPlay();
+                playRound(playerChoice, computerSelection);
+                playerScore = playerScore + playRound[0];
+                compScore = compScore + playRound[1];
+                if (i == 5) {
+                    console.log(playerScore + ", " + compScore);
+                }
+            }
+
+            //console.log(playerScore + ", " + compScore);
+        }
+
+
+        game();
+    </script>
+</body>
+
+</html>
